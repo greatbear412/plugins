@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+	<head>
+		<title>SWFObject 2 static publishing example page</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<!-- 动态方法 -->
+		<script type="text/javascript" src="swfobject.js"></script>
+		<script type="text/javascript">
+				swfobject.embedSWF("flash路径", "外层object的id,如本页面的myId", "宽300", "高120", "Flash版本9.0.115",'其余参数');
+		</script>
+	</head>
+	<body>
+		<div>
+
+
+			<!-- 静态标准格式 -->
+				<!-- ↓ -->
+			<object id="myId" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="300" height="140">
+				<param name="movie" value="test.swf" />
+        		<!--[if !IE]>-->
+				<object type="application/x-shockwave-flash" data="test.swf" width="300" height="140">
+				<!--<![endif]-->
+				<div>
+					<h1>Alternative content</h1>
+					<p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" /></a></p>
+				</div>
+				<!--[if !IE]>-->
+				</object>
+				<!--<![endif]-->
+			</object>
+				<!-- ↑ -->
+
+<!-- 总结 -->
+  如果不动态修改，用静态标准格式就好；
+	如果动态修改：
+			IE10及以下：用动态embedSWF方法修改flash路径；
+			除IE：Jquery.attr直接修改param的value和内层object的data；
+			IE Edge：重绘DOM（没找到更好的方法）(模版字符串,再Bebel转ES5相对快一点)
+	注：很多视频本地测试效果差，最好本地搭建服务器后测试
+		</div>
+	</body>
+</html>
